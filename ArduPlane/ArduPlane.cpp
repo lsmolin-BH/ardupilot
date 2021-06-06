@@ -4,7 +4,7 @@
    Authors:    Doug Weibel, Jose Julio, Jordi Munoz, Jason Short, Randy Mackay, Pat Hickey, John Arne Birkeland, Olivier Adler, Amilcar Lucas, Gregory Fletcher, Paul Riseborough, Brandon Jones, Jon Challinger, Tom Pittenger
    Thanks to:  Chris Anderson, Michael Oborne, Paul Mather, Bill Premerlani, James Cohen, JB from rotorFX, Automatik, Fefenin, Peter Meister, Remzibi, Yury Smirnov, Sandro Benigno, Max Levine, Roberto Navoni, Lorenz Meier, Yury MonZon
 
-   Please contribute your ideas! See https://dev.ardupilot.org for details
+   Please contribute your ideas! See https://ardupilot.org/dev for details
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -143,7 +143,7 @@ void Plane::ahrs_update()
     ahrs.update();
 
     if (should_log(MASK_LOG_IMU)) {
-        logger.Write_IMU();
+        AP::ins().Write_IMU();
     }
 
     // calculate a scaled roll limit based on current pitch
@@ -207,7 +207,7 @@ void Plane::update_logging1(void)
     }
 
     if (should_log(MASK_LOG_ATTITUDE_MED) && !should_log(MASK_LOG_IMU))
-        logger.Write_IMU();
+        AP::ins().Write_IMU();
 
     if (should_log(MASK_LOG_ATTITUDE_MED))
         ahrs.Write_AOA_SSA();
@@ -236,7 +236,7 @@ void Plane::update_logging2(void)
         Log_Write_RC();
 
     if (should_log(MASK_LOG_IMU))
-        logger.Write_Vibration();
+        AP::ins().Write_Vibration();
 }
 
 

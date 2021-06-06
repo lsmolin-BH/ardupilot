@@ -314,7 +314,6 @@ const struct LogStructure Plane::log_structure[] = {
 
 // @LoggerMessage: NTUN
 // @Description: Navigation Tuning information - e.g. vehicle destination
-// @URL: http://ardupilot.org/rover/docs/navigation.html
 // @Field: TimeUS: Time since system startup
 // @Field: Dist: distance to the current navigation waypoint
 // @Field: TBrg: bearing to the current navigation waypoint
@@ -322,7 +321,6 @@ const struct LogStructure Plane::log_structure[] = {
 // @Field: AltErr: difference between current vehicle height and target height
 // @Field: XT: the vehicle's current distance from the current travel segment
 // @Field: XTi: integration of the vehicle's crosstrack error
-// @Field: AspdE: difference between vehicle's airspeed and desired airspeed
 // @Field: AspdE: difference between vehicle's airspeed and desired airspeed
 // @Field: TLat: target latitude
 // @Field: TLng: target longitude
