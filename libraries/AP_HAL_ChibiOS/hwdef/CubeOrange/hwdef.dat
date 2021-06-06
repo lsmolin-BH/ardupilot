@@ -23,7 +23,7 @@ env OPTIMIZE -O2
 
 FLASH_RESERVE_START_KB 128
 
-define HAL_STORAGE_SIZE 32768
+define HAL_STORAGE_SIZE 16384
 
 # order of I2C buses
 I2C_ORDER I2C2 I2C1
@@ -207,7 +207,7 @@ PE12 FMU_LED_AMBER OUTPUT HIGH OPENDRAIN GPIO(0)
 
 # Power flag pins: these tell the MCU the status of the various power
 # supplies that are available. The pin names need to exactly match the
-# names used in AnalogIn.cpp. 
+# names used in AnalogIn.cpp.
 PB5 VDD_BRICK_nVALID INPUT PULLUP
 PB7 VDD_BRICK2_nVALID INPUT PULLUP
 PE10 VDD_5V_HIPOWER_nOC INPUT PULLUP
@@ -264,7 +264,7 @@ CHECK_IMU2_PRESENT   $CHECK_ICM20649
 CHECK_BARO0_PRESENT  $CHECK_MS5611
 CHECK_BARO1_PRESENT  $CHECK_MS5611_EXT
 
-BOARD_VALIDATE $CHECK_IMU0_PRESENT $CHECK_IMU1_PRESENT $CHECK_IMU2_PRESENT $CHECK_BARO0_PRESENT $CHECK_BARO1_PRESENT
+BOARD_VALIDATE $CHECK_IMU2_PRESENT $CHECK_BARO0_PRESENT
 
 
 define HAL_DEFAULT_INS_FAST_SAMPLE 7
@@ -273,13 +273,8 @@ define HAL_DEFAULT_INS_FAST_SAMPLE 7
 BARO MS56XX SPI:ms5611_ext
 BARO MS56XX SPI:ms5611
 
-# two compasses. First is in the LSM303D
-COMPASS LSM303D SPI:lsm9ds0_ext_am ROTATION_YAW_270
-# 2nd compass is part of the 2nd invensense IMU
-COMPASS AK8963:probe_mpu9250 1 ROTATION_YAW_270
-
 # compass as part of ICM20948 on newer cubes
-COMPASS AK09916:probe_ICM20948 0 ROTATION_ROLL_180_YAW_90
+# COMPASS AK09916:probe_ICM20948 0 ROTATION_ROLL_180_YAW_90
 
 # offset the internal compass for EM impact of the IMU heater
 # this is in sensor frame mGauss
@@ -325,4 +320,3 @@ define HAL_GPIO_PWM_VOLT_3v3 1
 ROMFS io_firmware.bin Tools/IO_Firmware/iofirmware_highpolh.bin
 
 DMA_NOSHARE SPI1* SPI4* USART6*
-

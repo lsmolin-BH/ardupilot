@@ -67,6 +67,10 @@ void Storage::_storage_open(void)
         ::printf("Initialised Storage type=%d\n", _initialisedType);
         return;
     }
+    else
+    {
+      printf("Failed to initialize FRAM");
+    }
 
 #if !HAL_RAMTRON_ALLOW_FALLBACK
     AP_HAL::panic("Unable to init RAMTRON storage");
@@ -145,7 +149,7 @@ void Storage::_save_backup(void)
     // So we keep trying this for a second
     uint32_t start_millis = AP_HAL::millis();
     while(!AP::FS().retry_mount() && (AP_HAL::millis() - start_millis) < 1000) {
-        hal.scheduler->delay(1);        
+        hal.scheduler->delay(1);
     }
 
     ret = AP::FS().mkdir(_storage_bak_directory);

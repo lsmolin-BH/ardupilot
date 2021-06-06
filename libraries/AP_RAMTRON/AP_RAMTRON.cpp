@@ -118,6 +118,7 @@ bool AP_RAMTRON::read(uint32_t offset, uint8_t *buf, uint32_t size)
     // be what we expect.
     if ((size > get_size()) ||
         (offset > (get_size() - size))) {
+        hal.console->printf("Not enough memory: %lu > %lu\n", size, get_size());
         return false;
     }
     const uint8_t maxread = 128;
