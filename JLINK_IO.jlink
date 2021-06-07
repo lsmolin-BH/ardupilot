@@ -1,0 +1,2 @@
+JLinkExe -device STM32F100C8 -if SWD -speed 4000 -autoconnect 1
+loadfile ./build/iomcu/bin/iofirmware_highpolh_with_bl.hex

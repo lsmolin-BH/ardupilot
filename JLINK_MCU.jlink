@@ -1,0 +1,4 @@
+JLinkExe -device STM32H753AI -if SWD -speed 4000 -autoconnect 1
+loadfile ./build/CubeOrange/bin/arducopter_with_bl.hex
+
+sudo python3 ./Tools/scripts/uploader.py --port /dev/ttyACM0 build/CubeOrange/bin/arducopter.apj
